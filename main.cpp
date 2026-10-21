@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 #include <utility>
 #include <algorithm>
@@ -18,20 +18,20 @@
 using namespace std;
 
 struct Weapon {
-    string name { "weapon" };
-    unsigned int damage { 1 };
+    string name{ "weapon" };
+    unsigned int damage{ 1 };
 };
 
 struct Spell {
-    string name { "spell" };
-    unsigned int damage { 1 };
+    string name{ "spell" };
+    unsigned int damage{ 1 };
 };
 
 class NPC {
 protected:
-    string name {"npc"};
-    unsigned int damage {2};
-    unsigned int health {10};
+    string name{ "npc" };
+    unsigned int damage{ 2 };
+    unsigned int health{ 10 };
     short lvl = 1;
     unsigned int armor = 5;
 
@@ -44,7 +44,7 @@ public:
         return damage;
     };
 
-    unsigned int GetHealth() {return health;};
+    unsigned int GetHealth() { return health; };
     void SetHealth(unsigned int health)   // сеттер
     {
         this->health = health;
@@ -83,7 +83,7 @@ public:
 
 class Warrior : virtual public NPC {
 protected:
-    short strenght { 21 };
+    short strenght{ 21 };
     vector<Weapon> weapons;
 
 public:
@@ -136,7 +136,7 @@ public:
 
 class Wizard : virtual public NPC {
 protected:
-    short intellect { 29 };
+    short intellect{ 29 };
     vector<Spell> spells;
 
 public:
@@ -186,7 +186,7 @@ public:
         armor += (1 + lvl * intellect * 0.1);
     }
 
-    ~Wizard() {cout << name << " испускает дух\n";}
+    ~Wizard() { cout << name << " испускает дух\n"; }
 };
 
 class Evil : public NPC {
@@ -239,7 +239,7 @@ public:
 
 class Player {
 private:
-    unique_ptr<NPC> currentCharacter { nullptr };
+    unique_ptr<NPC> currentCharacter{ nullptr };
 
 public:
     void Create(unique_ptr<NPC> character) {
@@ -274,18 +274,18 @@ int main() {
     short choise = 0;
     cin >> choise;
     switch (choise) {
-        case 1:
-            player.Create(make_unique<Warrior>());
-            break;
-        case 2:
-            player.Create(make_unique<Wizard>());
-            break;
-        case 3:
-            player.Create(make_unique<Paladin>());
-            break;
-        default:
-            cout << "Таких героев еще не было в наших краях. Возвращайся позже!\n";
-            break;
+    case 1:
+        player.Create(make_unique<Warrior>());
+        break;
+    case 2:
+        player.Create(make_unique<Wizard>());
+        break;
+    case 3:
+        player.Create(make_unique<Paladin>());
+        break;
+    default:
+        cout << "Таких героев еще не было в наших краях. Возвращайся позже!\n";
+        break;
     }
 
     takeDamage(player.GetCharacter(), 5);
